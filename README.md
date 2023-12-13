@@ -112,9 +112,9 @@ drop_rate_biases = 0.01
 params_weights = [p for name, p in net.named_parameters() if p.requires_grad and 'weight' in name]
 params_biases = [p for name, p in net.named_parameters() if p.requires_grad and 'bias' in name]
 
-drop_rates = {p: drop_rate_weights for p in params_weights}
-drop_rates.update({p: drop_rate_biases for p in params_biases})
+param_drop_rates = {p: drop_rate_weights for p in params_weights}
+param_drop_rates.update({p: drop_rate_biases for p in params_biases})
 
 opt_unwrapped = Adam(net.parameters(), lr=1e-3)
-opt = DropGrad(opt_unwrapped, drop_rate=None, params=drop_rates)
+opt = DropGrad(opt_unwrapped, drop_rate=None, params=param_drop_rates)
 ```
