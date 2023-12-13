@@ -45,10 +45,24 @@ class DropGrad(object):
                         drop_rate = self.params.get(param, self.drop_rate)
                     else:
                         drop_rate = self.drop_rate
-                    param.grad.data.mul_(
-                        torch.bernoulli(
-                            torch.full_like(param.grad.data, 1.0 - drop_rate)
-                        )
-                    ).div_(1.0 - drop_rate)
+                        
+                    if drop_rate is not None:
+                        param.grad.data.mul_(
+                            torch.bernoulli(
+                                torch.full_like(param.grad.data, 1.0 - drop_rate)
+                            )
+                        ).div_(1.0 - drop_rate)
                     
         return self.optimizer.step(closure)
+    
+    def zero_grad(self, set_to_none: bool = True) -> None:
+        """Clears the gradients of all optimized parameters.
+        
+        Args:
+            set_to_none (bool, optional): Whether to set the gradients to None. Defaults to True.
+        Returns:
+            None
+        """
+        
+        return self.optimizer.zero_grad(set_to_none)
+        
