@@ -1,5 +1,5 @@
 dist/*
 *__pycache__*
 src/test*
-src/dropgrad.egg-info*
+src/*.egg-info*
 run_test.py
