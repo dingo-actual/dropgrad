@@ -9,6 +9,7 @@
     - [Basic Usage](#basic-usage)
     - [Use with Learning Rate Schedulers](#use-with-learning-rate-schedulers)
     - [Varying `drop_rate` per `Parameter`](#varying-drop_rate-per-parameter)
+  - [TODO 🚧](#todo-)
 
 DropGrad is a regularization method for neural networks that works by randomly (and independently) setting gradient values to zero before an optimization step. Similarly to Dropout, it has a single parameter, `drop_rate`, the probability of setting each parameter gradient to zero. In order to de-bias the remaining gradient values, they are divided by `1.0 - drop_rate`.
 
@@ -118,3 +119,9 @@ param_drop_rates.update({p: drop_rate_biases for p in params_biases})
 opt_unwrapped = Adam(net.parameters(), lr=1e-3)
 opt = DropGrad(opt_unwrapped, drop_rate=None, params=param_drop_rates)
 ```
+
+## TODO 🚧
+
+[] Write analysis of DropGrad
+[] Implement drop rate schedulers
+[] Implement option to apply "full" update drop by interrupting `.step()`
