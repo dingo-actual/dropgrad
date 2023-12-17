@@ -122,6 +122,6 @@ opt = DropGrad(opt_unwrapped, drop_rate=None, params=param_drop_rates)
 
 ## TODO 🚧
 
-[] Write analysis of DropGrad
-[] Implement drop rate schedulers
-[] Implement option to apply "full" update drop by interrupting `.step()`
+- [ ] Write analysis of DropGrad
+- [ ] Implement drop rate schedulers
+- [ ] Implement option to apply "full" update drop by interrupting `.step()`
